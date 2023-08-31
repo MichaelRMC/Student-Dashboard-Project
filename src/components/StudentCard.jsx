@@ -3,25 +3,22 @@ import { useState } from "react";
 
 const StudentCard = ({ student }) => {
   const [showMore, setShowMore] = useState(false);
-  const [notes, setNotes] = useState("");
-  const [commenter, setCommenter] = useState("");
+  const [comment, setComment] = useState ({comment: "", name: ""});
+  const [article, setArticle] = useState([])
+  
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     setShowMore(!showMore);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addComment();
+    setArticle([...article, comment])
     resetForm();
   };
 
-  function addComment() {
-    const newComment = {
-      comment: notes.comment,
-      commenter: notes.commenter,
-    };
-    setComments([newComment, ...notes]);
+  function handleTextChange(e) {
+    setComment({comment: e.target.value, name: e.target.value});
   }
 
   function resetCommentForm() {
@@ -112,7 +109,7 @@ const StudentCard = ({ student }) => {
                 <fieldset>
                   <legend>Notes</legend>
                   <label htmlFor="comments">Comments:</label>
-                  <input type="text" name="comments" id="comments" />
+                  <input type="text" value="comments" id="comments" />
                   <label htmlFor="commenter">By</label>
                   <input type="text" name="commenter" id="commenter" />
                   <button onSubmit={handleSubmit} type="submit">
