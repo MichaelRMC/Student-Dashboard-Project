@@ -13,7 +13,7 @@ const Cohort = ({ students, handleClick }) => {
 
     return accumulator;
   }, []);
-  console.log(cohortCount);
+  // console.log(cohortCount);
   const cohortList = Object.keys(cohortCount);
 
   const cohortMap = cohortList.map((cohortListItem) => {
